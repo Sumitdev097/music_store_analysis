@@ -1,14 +1,14 @@
 
--- Q2: which country have the most invoices?
+-- Q1: which country have the most invoices?
 select count(*), billing_country from invoice
 group by billing_country order by billing_country
 desc limit 1
 
--- Q3: what are top 3 values of totalinvoice
+-- Q2: what are top 3 values of totalinvoice
 select total from invoice
 order by total desc limit 3
 
-/* Q4: Which city has the best customers? We would like to throw a promotional Music Festival in the city we made the most money. 
+/* Q3: Which city has the best customers? We would like to throw a promotional Music Festival in the city we made the most money. 
 Write a query that returns one city that has the highest sum of invoice totals. 
 Return both the city name & sum of all invoice totals */
 select sum(total) as invoice_total, billing_city 
@@ -17,7 +17,7 @@ group by billing_city
 order by invoice_total 
 desc limit 1
 
-/* Q5: Who is the best customer? The customer who has spent the most money will be declared the best customer. 
+/* Q4: Who is the best customer? The customer who has spent the most money will be declared the best customer. 
 Write a query that returns the person who has spent the most money.*/
 Select customer.customer_id,customer.first_name ,customer.last_name,sum(invoice.total) as total
 from customer
@@ -91,7 +91,7 @@ JOIN best_selling_artist bsa ON bsa.artist_id = alb.artist_id
 GROUP BY 1,2,3,4
 ORDER BY 5 DESC;
 
-/* Q3: Write a query that determines the customer that has spent the most on music for each country. 
+/* Q2: Write a query that determines the customer that has spent the most on music for each country. 
 Write a query that returns the country along with the top customer and how much they spent. 
 For countries where the top amount spent is shared, provide all customers who spent this amount. */
 
@@ -109,6 +109,7 @@ group by 1,2,3,4
 order by 4 asc ,5  desc)
 select * from customer_with_country
 where rowno <= 1
+
 
 
 
